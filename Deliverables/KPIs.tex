@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Detecting LLM Authorship}
+\date{\today}
+
+\usepackage{xcolor}
+\usepackage{pagecolor}
+\usepackage{amsthm, amssymb}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\usepackage{geometry}
+\geometry{legalpaper, margin=1in}
+
+
+
+
+\usepackage{lipsum}  
+
+\usepackage{amsmath}
+
+\usepackage{url}
+\usepackage{hyperref}
+% \pagecolor{black}
+% \color{white}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Project Description}
+
+Our project has two main goals:
+
+\begin{enumerate}
+    \item Given a text document, can we determine if it was human written or LLM generated?
+    \item Given a text document that is known to be LLM generated, can we determine which LLM wrote that document?
+\end{enumerate}
+
+\noindent The dataset we will use is from the AutoTexTification dataset which can be found \href{https://huggingface.co/datasets/symanto/autextification2023}{here.}
+
+Which contains both human and LLM generated text from 6 different models.
+
+\section{Key Performance Indicators}
+
+There is substantial business value in each of these tasks. For the first task, some possible uses include 
+\begin{enumerate}
+    \item Monitoring a competitors' business practices by revealing which LLM a rival company may  be using to generate or edit content.
+    \item Help detect use of unapproved LLMs, which could pose safety or legal risks (such as if a company allows only locally run LLMs).
+    \item Prevent IP contamination, e.g., mixing outputs from proprietary models with open models inappropriately.
+    \item As an intermediate input for the second task.
+
+\end{enumerate}
+
+For the second task, some possible uses include 
+\begin{enumerate}
+    \item Fraud detection, e.g. in user collected survey data
+    \item LLM plagiarism detection, as LLM usage can risk reputational harm (e.g. \href{https://www.404media.co/chicago-sun-times-prints-ai-generated-summer-reading-list-with-books-that-dont-exist/}{here})
+    \item Academic honesty 
+\end{enumerate}
+
+For each of these, the model should not be used as definitive proof of LLM usage, but instead as a way to flag text for further review. 
+
+\end{document}
