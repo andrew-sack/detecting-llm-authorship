@@ -15,5 +15,8 @@ We only consider the english version in this project. Sub-task 1 is a binary cla
 problem and Sub-task 2 is a multiclass classification problem with the following LLM's used: LOOM-1B1; BLOOM-3B; BLOOM-7B1;
 Babbage; Curie; and text-davinci-003. 
 
+Column ids for MGT Detection (subtask one) are `id`, `prompt`, `text`, `label`, `model` and `domain`.
+Column ids for Model Attribution (subtask two) are `id`, `prompt`, `text`, `label`, and `domain`.
+
 
 
