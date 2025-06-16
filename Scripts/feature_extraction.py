@@ -14,7 +14,11 @@ def split_words_remove_punctuation(text: str) -> list:
     r"""Splits a string and removes punctuation (e.g. capitalize, '?', '.', '!') from it."""
     return re.findall(r'\b\w+\b', text)
 
-def text_length(text) -> int:
+"""
+Lexical Features
+"""
+
+def text_length(text: str) -> int:
     return len(text)
 
 def word_count(text: str) -> int:
@@ -31,9 +35,34 @@ def average_word_length(text: str) -> float:
         return 0
     return sum(len(word) for word in words) / len(words)
 
-import re
+def ttr_lexical_diversity(text: str) -> float:
+    r"""Type-Token Ratio: measures lexical diversity.
 
-def split_into_sentences(paragraph) -> list:
+    Meaning comes from type = 'unique word', and token = 'any word'.
+    Measures the ratio of unique words.
+    """
+    return unique_word_count(text) / word_count(text)
+
+def hapax_legomenon_rate(text: str) -> float:
+    r"""Hapax Legomenon Rate: Proportion of words that appear only once.
+
+    Measure of the number of rare/unique words
+    """
+    count = dict({})
+    words = split_words_remove_punctuation(text)
+    total_words = len(words)
+    # Avoid division by zero
+    if total_words == 0:
+        return 0.0
+    for w in words: count[w] += 1
+    hapax_count = sum(1 for count in count.values() if count == 1)
+    return hapax_count / total_words
+
+"""
+Syntactic Features
+"""
+
+def split_into_sentences(paragraph: str) -> list:
     # Regular expression to match sentence-ending punctuation
     # followed by a space and an uppercase letter (to reduce false splits)
     sentence_endings = re.compile(r'(?<=[.!?])\s+(?=[A-Z])')
