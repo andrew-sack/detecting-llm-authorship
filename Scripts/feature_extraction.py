@@ -136,4 +136,49 @@ def grab_common_words():
         common_words = set(line.strip().lower() for line in f)
     return common_words
 
+def common_words_frequencies(text: str) -> float:
+    # Gets the frequency of the most common words
+    common_words = grab_common_words()
+    words = split_words_remove_punctuation(text)
+    total = len(words)
+    if total == 0:
+        return 0.0
+    common = sum(1 for word in words if word in common_words)
+    return common / total
+
+def complex_words_frequencies(text: str) -> float:
+    # Gets the frequency of the most uncommon words
+    common_words = grab_common_words()
+    words = split_words_remove_punctuation(text)
+    total = len(words)
+    if total == 0:
+        return 0.0
+    uncommon = sum(1 for word in words if word not in common_words)
+    return uncommon / total
+
+def complex_verb_count(text: str) -> float:
+    common_words = grab_common_words()
+    doc = nlp(text)
+    count = 0
+    for token in doc:
+        if token.pos_ == "VERB" and token.lemma_.lower() not in common_words:
+            count += 1
+    return count
+
+
+"""
+Sentiment Features
+"""
+def emotional_word_frequencies(text: str) -> float:
+    with open("../Data/EmotionLexicon/unique_emotion_words.txt", "r") as f:
+        emotional_words = set(line.strip().lower() for line in f)
+    words = split_words_remove_punctuation(text)
+    total = len(words)
+    if total == 0:
+        return 0.0
+    emotional_words = sum(1 for word in words if word not in emotional_words)
+    return emotional_words / total
+
+def polarity_and_subjectivity(text: str) -> Union[float, float]:
+    r"""Obtains the polarity and subjectivity
 
