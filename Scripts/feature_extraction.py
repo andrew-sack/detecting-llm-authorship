@@ -182,3 +182,58 @@ def emotional_word_frequencies(text: str) -> float:
 def polarity_and_subjectivity(text: str) -> Union[float, float]:
     r"""Obtains the polarity and subjectivity
 
+    The polarity is within [-1, 1] and measures the text’s sentiment orientation
+     (positive, negative, or neutral)
+    The sentiment is within [0, 1] and measures the amount of personal opinion and
+    factual information in the text
+
+    See https://textblob.readthedocs.io/en/dev/quickstart.html#sentiment-analysis
+    """
+    text_blob = TextBlob(text)
+    return text_blob.sentiment
+
+def vader_compound_index(text: str) -> float:
+    raise NotImplementedError("Implement it probably using ntlk")
+
+
+r"""
+Readability
+"""
+
+def flesch_reading_ease(text: str) -> float:
+    r"""
+    Flesch Reading Ease: U.S. school-grade level required to understand the text.
+    Value inbetween [0, 100]. But I'll normalize it to be within [0, 1].
+
+    206.39  - 1.015 * (total words / total sentences) - 84.6 * (total syllables / total words)
+
+    """
+    # Note that if it is less than 100 words it isn't as accurate
+    if (word_count(text) < 100):
+        warnings.warn("Less than 100 words means it is not accurate.")
+    r = Readability(text, min_words=10)
+    return r.flesch_kincaid().score / 100.0
+
+def dale_chall_readability(text: str) -> float:
+    r"""
+     Grade level based on familiar vs. “hard” words plus sentence length.
+
+     Percent of words not in 3,000 easy word list.
+
+    """
+    # I think the upper-bound is 15
+    r = Readability(text, min_words=10)
+    score = r.dale_chall().score
+    UPP_BND = 15
+    if (score > UPP_BND):
+        raise ValueError(f"In the code increase {UPP_BND} to the new upper-bound {score}")
+    return score / UPP_BND
+
+def gunning_gog_index(text: str) -> float:
+    # I think the upper-bound is 15
+    r = Readability(text, min_words=10)
+    score = r.gunning_fog().score
+    UPP_BND = 30
+    if score > UPP_BND:
+        raise ValueError(f"In the code increase {UPP_BND} to the new upper-bound {score}")
+    return score / UPP_BND
