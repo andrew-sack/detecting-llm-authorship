@@ -69,15 +69,18 @@ def split_into_sentences(paragraph: str) -> list:
     sentences = sentence_endings.split(paragraph.strip())
     return sentences
 
+def sentence_length(text: str) -> int:
+    sentences = split_into_sentences(text)
+    return len(sentences)
+
 def average_sentence_length(text: str) -> float:
     sentences = split_into_sentences(text)
     if len(sentences) == 0:
         return 0
     return sum(len(sentence.split()) for sentence in sentences) / len(sentences)
 
-
-def punctuation_frequencies(text: str):
-    #Count each punctuation mark including em dash
+def punctuation_frequencies(text: str) -> dict:
+    # Count each punctuation mark including em dash
     punctuation_marks = r".,!?;:-—&_()\"'`"
     frequencies = {mark: text.count(mark) for mark in punctuation_marks}
     #normalize frequencies by total count of punctuation marks
@@ -128,5 +131,9 @@ def part_of_speech_frequencies(text: str):
         return {pos: 0 for pos in pos_counts}
     return {pos: count / total_count for pos, count in pos_counts.items()}
 
+def grab_common_words():
+    with open("../Data/Common_Words/coca_most_frequent_words.txt", "r") as f:
+        common_words = set(line.strip().lower() for line in f)
+    return common_words
 
 
