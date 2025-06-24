@@ -61,4 +61,87 @@ def part_of_speech_frequencies(text: str):
     return {pos: count / total_count for pos, count in pos_counts.items()}
 
 
+def letter_frequencies(text: str) -> dict:
+    """
+    Calculate the frequency of each letter in the text.
+    The function returns a dictionary with letters as keys and their frequencies as values.
+    :param text: The input text to analyze.
+    :return: A dictionary with letters as keys and their frequencies as values.
+    """
+    text = text.lower()
+    frequencies = {chr(i): 0 for i in range(ord('a'), ord('z') + 1)}
+    
+    for char in text:
+        if char.lower() in frequencies:
+            frequencies[char] += 1
+    
+    total_count = sum(frequencies.values())
+    if total_count == 0:
+        return {char: 0 for char in frequencies}
+    
+    return {char: count / total_count for char, count in frequencies.items()}
 
+import pronouncing
+def extract_vowel_sounds(text: str) -> list:
+    ARPAbet_vowels = {"AA", "AE", "AH", "AO", "AW", "AY", "EH", 
+                      "ER", "EY", "IH", "IY", "OW", "OY", "UH", "UW"}
+    words = re.findall(r'\b\w+\b', text.lower())  # tokenize text
+    vowels = []
+
+    for word in words:
+        phones_list = pronouncing.phones_for_word(word)
+        if phones_list:
+            # Use the first pronunciation
+            phones = phones_list[0].split()
+            for phone in phones:
+                phoneme = re.sub(r'\d', '', phone)  # remove stress digits
+                if phoneme in ARPAbet_vowels:
+                    vowels.append(phoneme)
+    
+    return vowels
+
+def vowel_sound_frequencies(text: str) -> dict:
+    """
+    Calculate the frequency of vowel sounds in the text.
+    The function returns a dictionary with vowel sounds as keys and their frequencies as values.
+    :param text: The input text to analyze.
+    :return: A dictionary with vowel sounds as keys and their frequencies as values.
+    """
+    ARPAbet_vowels = {"AA", "AE", "AH", "AO", "AW", "AY", 
+                      "EH", "ER", "EY", "IH", "IY", 
+                      "OW", "OY", "UH", "UW"}
+    vowels = extract_vowel_sounds(text)
+    total_count = len(vowels)
+    
+    if total_count == 0:
+        return {vowel: 0 for vowel in ARPAbet_vowels}
+    
+    frequencies = {vowel: 0 for vowel in ARPAbet_vowels}
+    
+    for vowel in vowels:
+        frequencies[vowel] += 1
+    
+    return {vowel: count / total_count for vowel, count in frequencies.items()}
+
+import itertools as it
+def vowel_sound_pair_frequencies(text: str) -> dict:
+    """
+    Calculate the frequency of consecutive vowel sounds in the text.
+    The function returns a dictionary with consecutive vowel sounds as keys and their frequencies as values.
+    :param text: The input text to analyze.
+    :return: A dictionary with consecutive vowel sounds as keys and their frequencies as values.
+    """
+    vowels = extract_vowel_sounds(text)
+    ARPAbet_vowels = {"AA", "AE", "AH", "AO", "AW", "AY", 
+                      "EH", "ER", "EY", "IH", "IY", 
+                      "OW", "OY", "UH", "UW"}
+    vowel_pairs = {sound:0 for sound in it.product(ARPAbet_vowels, repeat=2)}
+
+    
+    
+    for i in range(len(vowels) - 1):
+        vowel_pairs[(vowels[i], vowels[i + 1])] += 1
+    total_count = sum(vowel_pairs.values())
+    if total_count == 0:
+        return {pair: 0 for pair in vowel_pairs}
+    return {"".join(pair): count / total_count for pair, count in vowel_pairs.items()}
