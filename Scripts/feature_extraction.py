@@ -236,7 +236,9 @@ def gunning_gog_index(text: str) -> float:
     UPP_BND = 30
     if score > UPP_BND:
         raise ValueError(f"In the code increase {UPP_BND} to the new upper-bound {score}")
-    return score / UPP_BNDdef letter_frequencies(text: str) -> dict:
+    return score / UPP_BNDdef 
+
+def letter_frequencies(text: str) -> dict:
     """
     Calculate the frequency of each letter in the text.
     The function returns a dictionary with letters as keys and their frequencies as values.
@@ -318,5 +320,5 @@ def vowel_sound_pair_frequencies(text: str) -> dict:
         vowel_pairs[(vowels[i], vowels[i + 1])] += 1
     total_count = sum(vowel_pairs.values())
     if total_count == 0:
-        return {pair: 0 for pair in vowel_pairs}
+        return  {"".join(pair):0 for pair in vowel_pairs}
     return {"".join(pair): count / total_count for pair, count in vowel_pairs.items()}
