@@ -9,6 +9,12 @@ import nltk
 nltk.download('punkt_tab')
 import warnings
 
+# Add parsing the emotional and common words as global variables to speed up
+with open("../Data/EmotionLexicon/unique_emotion_words.txt", "r") as f:
+    emotional_words = set(line.strip().lower() for line in f)
+with open("../Data/Common_Words/coca_most_frequent_words.txt", "r") as f:
+    common_words = set(line.strip().lower() for line in f)
+
 
 def split_words_remove_punctuation(text: str) -> list:
     r"""Splits a string and removes punctuation (e.g. capitalize, '?', '.', '!') from it."""
@@ -54,7 +60,10 @@ def hapax_legomenon_rate(text: str) -> float:
     # Avoid division by zero
     if total_words == 0:
         return 0.0
-    for w in words: count[w] += 1
+    for w in words:
+        if w not in count:
+            count[w] = 0.0
+        count[w] += 1
     hapax_count = sum(1 for count in count.values() if count == 1)
     return hapax_count / total_words
 
@@ -131,14 +140,8 @@ def part_of_speech_frequencies(text: str):
         return {pos: 0 for pos in pos_counts}
     return {pos: count / total_count for pos, count in pos_counts.items()}
 
-def grab_common_words():
-    with open("../Data/Common_Words/coca_most_frequent_words.txt", "r") as f:
-        common_words = set(line.strip().lower() for line in f)
-    return common_words
-
 def common_words_frequencies(text: str) -> float:
     # Gets the frequency of the most common words
-    common_words = grab_common_words()
     words = split_words_remove_punctuation(text)
     total = len(words)
     if total == 0:
@@ -148,7 +151,6 @@ def common_words_frequencies(text: str) -> float:
 
 def complex_words_frequencies(text: str) -> float:
     # Gets the frequency of the most uncommon words
-    common_words = grab_common_words()
     words = split_words_remove_punctuation(text)
     total = len(words)
     if total == 0:
@@ -157,7 +159,6 @@ def complex_words_frequencies(text: str) -> float:
     return uncommon / total
 
 def complex_verb_count(text: str) -> float:
-    common_words = grab_common_words()
     doc = nlp(text)
     count = 0
     for token in doc:
@@ -170,14 +171,12 @@ def complex_verb_count(text: str) -> float:
 Sentiment Features
 """
 def emotional_word_frequencies(text: str) -> float:
-    with open("../Data/EmotionLexicon/unique_emotion_words.txt", "r") as f:
-        emotional_words = set(line.strip().lower() for line in f)
     words = split_words_remove_punctuation(text)
     total = len(words)
     if total == 0:
         return 0.0
-    emotional_words = sum(1 for word in words if word not in emotional_words)
-    return emotional_words / total
+    emot_words = sum(1 for word in words if word not in emotional_words)
+    return emot_words / total
 
 def polarity_and_subjectivity(text: str) -> Union[float, float]:
     r"""Obtains the polarity and subjectivity
@@ -211,7 +210,7 @@ def flesch_reading_ease(text: str) -> float:
     # Note that if it is less than 100 words it isn't as accurate
     if (word_count(text) < 100):
         warnings.warn("Less than 100 words means it is not accurate.")
-    r = Readability(text, min_words=10)
+    r = Readability(text, min_words=5)
     return r.flesch_kincaid().score / 100.0
 
 def dale_chall_readability(text: str) -> float:
@@ -221,22 +220,14 @@ def dale_chall_readability(text: str) -> float:
      Percent of words not in 3,000 easy word list.
 
     """
-    # I think the upper-bound is 15
-    r = Readability(text, min_words=10)
+    r = Readability(text, min_words=5)
     score = r.dale_chall().score
-    UPP_BND = 15
-    if (score > UPP_BND):
-        raise ValueError(f"In the code increase {UPP_BND} to the new upper-bound {score}")
-    return score / UPP_BND
+    return score
 
 def gunning_gog_index(text: str) -> float:
-    # I think the upper-bound is 15
-    r = Readability(text, min_words=10)
+    r = Readability(text, min_words=5)
     score = r.gunning_fog().score
-    UPP_BND = 30
-    if score > UPP_BND:
-        raise ValueError(f"In the code increase {UPP_BND} to the new upper-bound {score}")
-    return score / UPP_BNDdef 
+    return score
 
 def letter_frequencies(text: str) -> dict:
     """
