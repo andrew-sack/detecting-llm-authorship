@@ -7,5 +7,5 @@ Email: saif.mohammad@nrc-cnrc.gc.ca
 "
 
 
-The csv file `emolex.csv` contains the csv file with every emotion as the coloumns
+The csv file `emolex.csv` contains the csv file with every emotion as the columns
 The text file `unique_emotion_words.txt` contains the text file of the unique words that have atleast one emotion in it.

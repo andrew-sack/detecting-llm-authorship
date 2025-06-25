@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 if __name__ == "__main__":
-    TASK = "two"   # task is either 'one' or 'two'
+    TASK = "one"   # task is either 'one' or 'two'
     assert TASK in ["one", "two"], "TASK should be one or two."
 
     df_train = pd.read_csv(
@@ -33,7 +33,10 @@ if __name__ == "__main__":
 
     print(f"Full Number of Samples Together: {len(df_combined)}")
 
+    df_combined.reset_index(drop=True, inplace=True)
+
     df_combined.to_csv(
         f"../Data/AuTextification/cleaned/subtask_{TASK}_grouped.tsv",
         sep="\t"
     )
+    print("Done")
