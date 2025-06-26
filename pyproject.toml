@@ -15,7 +15,8 @@ dependencies = [
   "textblob",
   "spacy",
   "py-readability-metrics @ git+https://github.com/cdimascio/py-readability-metrics.git@master",
-  "nltk"
+  "nltk",
+  "seaborn"
 ]
 
 [tool.setuptools.packages.find]
