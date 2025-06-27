@@ -14,9 +14,10 @@ to utilize classical (non-deep learning) machine learning techniques, and numeri
 ## Dataset
 The AuTextification dataset is utilized for a competition from the 5th Workshop on Iberian Languages Evaluation Forum at the SEPLN 2023 Conference. 
 This dataset provides 55677 short text-files either written by a human or written by a LLM. The prompt of the LLM is the initial prefix of the text and asked to auto complete the rest of the text.
-The domains of the text are: legal, tweets, how to articles, news, and reviews.  The competition splits the dataset into training and test, where the tweets, legal and how to articles are 
-within the training set, and the news and reviews are within the test set. 
-This places more emphasis on the machine learning model to be generalizable, making it a much more challenging problem. Since the the test set has a different distribution compared to the training set, and is
+The domains of the text are: legal, tweets, how to articles, news, and reviews.  
+
+The competition splits the dataset into training and test, where the tweets, legal and how to articles are 
+within the training set, and the news and reviews are within the test set.  This places more emphasis on the machine learning model to be generalizable, making it a much more challenging problem. Since the the test set has a different distribution compared to the training set, and is
 outside of the interpolating regime.
 
 <img src="https://github.com/user-attachments/assets/9366d669-07e8-4087-bc99-80967cfd2ec9" width=50% height=50%>
@@ -33,6 +34,23 @@ The following illustrates the word-count per domain of the training and test set
 
 
 ## Feature Selection
+
+Different description of the text file is computed resulting in a total list of 316 features. We consider a wide variety of features ranging from simple features that include:
+
+- Total amount of (unique) words
+- Relative frequencies of different punctuation, and letters.
+- The average length of words and sentences.
+- Lexical diversity of the text, defined as the total number of unique words divided by the total number of words.
+- The number of emotional words used, obtained from the(EmoLex) Word-Emotion Association Lexicon dataset.
+- The number of common words used, obtained from the COCA Word Frequency dataset.
+
+In addition, we employed some existing natural language processing libraries to extract features, including:
+
+- The text's polarity (positive, neutral or negative feeling of the text), and its sentiment (personal opinion, and factual information)
+- The grade-level or years of education needed to understand the text
+- The relative frequency of vowel sounds.  
+
+The following outlines two of our features, based on generated and human data:
 
 
 ## Model Selection and Results
