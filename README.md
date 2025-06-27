@@ -95,4 +95,8 @@ The Random Forest model identified these as the ten most influential features:
 
 ## File Descriptions
 
-- [Data Folder](./Data/) : Folder that contains all of the datasets (both raw and clean).
+- [Data Folder](./Data/) : Folder that contains all of the datasets used (both raw, features and clean).
+  - COCA Word Frequency dataset: contains the most frqeuent words from  the COCA (Corpus of Contemporary American English).
+  - (EmoLex) Word-Emotion Association Lexicon dataset: contains a list of words that their basic emotion, and sentiment.
+- [Deliverables Folder](./Deliberables) : Contains our business KPI report, and executive summary.
+- [Scripts Folder](./Scripts): Contains all of our scripts used to generate, and produce these results.
