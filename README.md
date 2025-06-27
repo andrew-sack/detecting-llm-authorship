@@ -67,7 +67,7 @@ We remove 10/% of our training dataset as a hold-out set for comparing whether o
 
 Whereas, the confusion plot of the test set is shown below,, illustrating much more false negatives than false positives.
 
-  <img src="https://github.com/user-attachments/assets/dd3badaa-cbe2-49c5-b501-b3cbc64b6038" width=56% height=60%>
+  <img src="https://github.com/user-attachments/assets/dd3badaa-cbe2-49c5-b501-b3cbc64b6038" width=56% height=66%>
 
 The Random Forest model identified these as the ten most influential features:
 
@@ -84,12 +84,12 @@ The Random Forest model identified these as the ten most influential features:
 
 #### FFNN
 
-  We utilize a feedforward neural network from the scikit-learn package. All 316 features were utilized, and the hyper-parameters optimized were: number of hidden layers, activation function, optimization algorithm and choice of learning rate.  The accuracies was found to be 0.78 \% on the validation set and 62\% on the test set. Making it very similar to the random forest model. The following confusion matrices are shown of the validation and test set, respectively.  These demonstrate that the FFNN are able to have more balanced number of false negatives, and false positive.
-  Since our business objective is based on fraud and spam detection, these indicate that the FFNN has much less false negatives, and would be more suited for these tasks.
+  We utilize a feedforward neural network from the scikit-learn package. All 316 features were utilized, and the hyper-parameters optimized were: number of hidden layers, activation function, optimization algorithm and choice of learning rate.  The accuracies was found to be 0.78 \% on the validation set and 62\% on the test set. Making it very similar to the random forest model. The following confusion matrices are shown of the validation and test set, respectively.   The FFNN has more balanced number of false negatives, and false positive for the 'news' domain. However, it has similar ratios for 'reviews' domain, compared to random forest.
+  Since our business objective is based on fraud and spam detection, these indicate that the FFNN is more suited since it has less false negatives.
   
   <img src="https://github.com/user-attachments/assets/536bfbab-6526-4490-9e4f-b81e94f7b49a" width=85% height=50%>
 
-  <img src="https://github.com/user-attachments/assets/ff691adb-1edf-4ac4-9643-db33ed6b06f1" width=56% height=60%>
+  <img src="https://github.com/user-attachments/assets/ff691adb-1edf-4ac4-9643-db33ed6b06f1" width=56% height=66%>
 
 
 #### Light-GBM 
