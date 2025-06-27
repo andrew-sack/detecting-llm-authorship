@@ -30,8 +30,7 @@ In addition certain features, such as readability features, do not provide accur
 
 The following illustrates the word-count per domain of the training and test set. The tweet shows the lowest amount of word count, and all other domains shows high frequency of word-count between 60-80. 
 
-<img src="https://github.com/user-attachments/assets/3b431ba3-a328-4948-b53c-c9a68efec3ed" width=75% height=75%>
-
+<img src="https://github.com/user-attachments/assets/9b4e23fc-7635-408f-bbc5-bef03022a795" width=75% height=75%>
 
 ## Feature Selection
 
@@ -54,6 +53,24 @@ The following outlines two of our features, based on generated and human data:
 
 
 ## Model Selection and Results
+
+We utilized four very common machine learning mdoels to predict binary classification problems: random forest, Light Gradient Boosting Machine (Light-GBM), and feed-forward neural networks (FFNN). 
+We remove 10/% of our training dataset as a hold-out set for comparing whether our model performs well on the non-interpolating regime from the initial test-set and from the interpolating regime. 
+
+
+#### Random Forest
+  We utilize a random forest from scikit-learn package.  All 316 features were utilized, and only a single hyper-parameter was utilized: the number of estimators. The value for the number of estimators was found to be 100.  The accuracies was found to be 0.79\% on the validation set and 64\% on the test set. The confusion plot of the validation is shown below, illustrating relatively the same level of false negatives and positives.
+  
+  <img src="https://github.com/user-attachments/assets/8763e686-5548-405d-a946-fbeb39d2915a" width=75% height=75%>
+
+Whereas, the confusion plot of the test set is shown below,, illustrating much more false negatives than false positives.
+
+  <img src="https://github.com/user-attachments/assets/dd3badaa-cbe2-49c5-b501-b3cbc64b6038" width=75% height=75%>
+
+#### FFNN
+
+#### Light-GBM 
+
 
 ## File Descriptions
 
