@@ -16,10 +16,20 @@ The AuTextification dataset is utilized for a competition from the 5th Workshop 
 This dataset provides 55677 short text-files either written by a human or written by a LLM. The prompt of the LLM is the initial prefix of the text and asked to auto complete the rest of the text.
 The domains of the text are: legal, tweets, how to articles, news, and reviews.  The competition splits the dataset into training and test, where the tweets, legal and how to articles are 
 within the training set, and the news and reviews are within the test set. 
+This places more emphasis on the machine learning model to be generalizable, making it a much more challenging problem. Since the the test set has a different distribution compared to the training set, and is
+outside of the interpolating regime.
 
 <img src="https://github.com/user-attachments/assets/9366d669-07e8-4087-bc99-80967cfd2ec9" width=50% height=50%>
 
-## Preprocessing
+#### Word-Count
+The total number of words varies between each domain. A histogram of the length of each text is presented below of the training and test set. It is incredibly difficult to compare sentences whose length is less than ten. 
+In addition certain features, such as readability features, do not provide accurate values when the length of the word is less than 10. Therefore, we review data whose text is less than ten, resulting in final data set of N=33606 for training and N=21476 for test.  
+
+<img src="https://github.com/user-attachments/assets/76b15380-67fa-4f61-8897-002f661d6d66" width=50% height=50%>
+
+
+## Feature Selection
+
 
 ## Model Selection and Results
 
