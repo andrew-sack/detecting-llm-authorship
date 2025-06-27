@@ -61,33 +61,33 @@ We remove 10/% of our training dataset as a hold-out set for comparing whether o
 #### Random Forest
   We utilize a random forest from scikit-learn package.  All 316 features were utilized, and only a single hyper-parameter was utilized: the number of estimators. The value for the number of estimators was found to be 100.  The accuracies was found to be 0.79\% on the validation set and 64\% on the test set. The confusion plot of the validation is shown below, illustrating relatively the same level of false negatives and positives.
   
-  <img src="https://github.com/user-attachments/assets/8763e686-5548-405d-a946-fbeb39d2915a" width=75% height=75%>
+  <img src="https://github.com/user-attachments/assets/8763e686-5548-405d-a946-fbeb39d2915a" width=85% height=50%>
 
 Whereas, the confusion plot of the test set is shown below,, illustrating much more false negatives than false positives.
 
-  <img src="https://github.com/user-attachments/assets/dd3badaa-cbe2-49c5-b501-b3cbc64b6038" width=75% height=75%>
+  <img src="https://github.com/user-attachments/assets/dd3badaa-cbe2-49c5-b501-b3cbc64b6038" width=56% height=60%>
 
 The Random Forest model identified these as the ten most influential features:
 
-- Unique Word Count:                   0.035155
-- TTR Lexical Diversity:               0.026636
-- Hapax Rate:                0.022885
-- Sentence Length:                     0.016991
-- Average Sentence Length:             0.015966
-- Flesch reading score:                 0.015413
-- Gunning God Index:                   0.013218
-- Complex Word Frequencies:           0.012523
-- Frequencies of Proper Nouns:    0.012259
-- Average Word Length:                 0.011843
+- Unique Word Count:                   0.035
+- TTR Lexical Diversity:               0.027
+- Hapax Rate:                0.023
+- Sentence Length:                     0.017
+- Average Sentence Length:             0.016
+- Flesch reading score:                 0.015
+- Gunning God Index:                   0.013
+- Complex Word Frequencies:           0.012
+- Frequencies of Proper Nouns:    0.012
+- Average Word Length:                 0.012
 
 #### FFNN
 
   We utilize a feedforward neural network from the scikit-learn package. All 316 features were utilized, and the hyper-parameters optimized were: number of hidden layers, activation function, optimization algorithm and choice of learning rate.  The accuracies was found to be 0.78 \% on the validation set and 62\% on the test set. Making it very similar to the random forest model. The following confusion matrices are shown of the validation and test set, respectively.  These demonstrate that the FFNN are able to have more balanced number of false negatives, and false positive.
   Since our business objective is based on fraud and spam detection, these indicate that the FFNN has much less false negatives, and would be more suited for these tasks.
   
-  <img src="https://github.com/user-attachments/assets/536bfbab-6526-4490-9e4f-b81e94f7b49a" width=75% height=75%>
+  <img src="https://github.com/user-attachments/assets/536bfbab-6526-4490-9e4f-b81e94f7b49a" width=85% height=50%>
 
-  <img src="https://github.com/user-attachments/assets/ff691adb-1edf-4ac4-9643-db33ed6b06f1" width=75% height=75%>
+  <img src="https://github.com/user-attachments/assets/ff691adb-1edf-4ac4-9643-db33ed6b06f1" width=56% height=60%>
 
 
 #### Light-GBM 
