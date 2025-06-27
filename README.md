@@ -27,6 +27,10 @@ In addition certain features, such as readability features, do not provide accur
 
 <img src="https://github.com/user-attachments/assets/76b15380-67fa-4f61-8897-002f661d6d66" width=50% height=50%>
 
+The following illustrates the word-count per domain of the training and test set. The tweet shows the lowest amount of word count, and all other domains shows high frequency of word-count between 60-80. 
+
+<img src="https://github.com/user-attachments/assets/3b431ba3-a328-4948-b53c-c9a68efec3ed" width=75% height=75%>
+
 
 ## Feature Selection
 
