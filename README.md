@@ -49,7 +49,9 @@ In addition, we employed some existing natural language processing libraries to 
 - The grade-level or years of education needed to understand the text
 - The relative frequency of vowel sounds.  
 
-The following outlines two of our features, based on generated and human data:
+The following outlines our distribution of four of our features (average word length, number of words, average number of words and average sentence length) based on generated and human data:
+
+  <img src="https://github.com/user-attachments/assets/a7b40468-ba66-4f04-b14d-13cb30501fe0" width=50% height=50%>
 
 
 ## Model Selection and Results
