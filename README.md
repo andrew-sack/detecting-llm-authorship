@@ -63,11 +63,11 @@ We remove 20/% of our training dataset as a hold-out set for comparing whether o
 #### Random Forest
   We utilize a random forest from scikit-learn package.  All 316 features were utilized, and only a single hyper-parameter was utilized: the number of estimators. The value for the number of estimators was found to be 100.  The accuracies was found to be 0.80\% on the validation set and 62\% on the test set. The confusion plot of the validation is shown below, illustrating relatively the same level of false negatives and positives.
 
-  <img src="https://github.com/user-attachments/assets/a39c484d-42b9-4baf-b149-527e6fd1a4f9" width=85% height=50%>
+  <img src="https://github.com/user-attachments/assets/2a7e274c-2119-48d8-92e3-9ef9108dd9c9" width=85% height=50%>
 
 Whereas, the confusion plot of the test set is shown below,, illustrating much more false negatives than false positives.
 
-  <img src="https://github.com/user-attachments/assets/6ea9871b-4605-4812-aa20-fdfc35ad89b4" width=56% height=66%>
+  <img src="https://github.com/user-attachments/assets/9b13aca2-87cc-4e4f-bd88-f2483daa7f37" width=85% height=50%>
 
 The Random Forest model identified these as the ten most influential features:
 
@@ -84,15 +84,19 @@ The Random Forest model identified these as the ten most influential features:
 
 #### FFNN
 
-  We utilize a feedforward neural network from the scikit-learn package. All 316 features were utilized, and the hyper-parameters optimized were: number of hidden layers, activation function, optimization algorithm and choice of learning rate.  The accuracies was found to be 0.79 \% on the validation set and 59\% on the test set. Making it very similar to the random forest model. The following confusion matrices are shown of the validation and test set, respectively.   The FFNN has more balanced number of false negatives, and false positive for the 'news' domain. However, it has similar ratios for 'reviews' domain, compared to random forest.
-  Since our business objective is based on fraud and spam detection, these indicate that the FFNN is more suited since it has less false negatives.
+  We utilize a feedforward neural network from the scikit-learn package. All 316 features were utilized, and the hyper-parameters optimized were: number of hidden layers, activation function, optimization algorithm and choice of learning rate.  The accuracies was found to be 0.79 \% on the validation set and 66\% on the test set. Making it very similar to the random forest model. The following confusion matrices are shown of the validation and test set, respectively.   
 
-  <img src="https://github.com/user-attachments/assets/7bd025a7-fa14-49af-941f-608037df18a1" width=85% height=50%>
+  <img src="https://github.com/user-attachments/assets/588fde1e-0f4d-43f5-8ede-39e49ca97ab3" width=85% height=50%>
 
-  <img src="https://github.com/user-attachments/assets/2076398a-c7b3-425b-8eeb-6ac15e95be24" width=56% height=66%>
+  <img src="https://github.com/user-attachments/assets/01f14071-f95b-469d-83f5-4a5ea31581dd" width=56% height=66%>
 
 
 #### Light-GBM 
+  We utilize a light-GBM model from the Microsoft/LightGBM package. All 316 faetures were utilized, and the hyper-parameters were: number of leaves, max depth of tree, regularization (alpha and lambda), and percentage of features used for building each tree.  The accuracies was found to be 81 \% on the validation set and 65\% on the test set. This demonstrates that Light-GBM has the highest level of accuracy compared to the rest of the model. The following two confusion matrices on the validation and test set are shown:
+
+  <img src="https://github.com/user-attachments/assets/347dc434-e1dc-4ada-a6db-f2c381dafee3" width=85% height=50%>
+
+  <img src="https://github.com/user-attachments/assets/f303d384-1049-4a58-88d0-c8379f77f345" width=56% height=66%>
 
 
 ## File Descriptions
