@@ -57,17 +57,17 @@ The following outlines our distribution of four of our features (average word le
 ## Model Selection and Results
 
 We utilized four very common machine learning mdoels to predict binary classification problems: random forest, Light Gradient Boosting Machine (Light-GBM), and feed-forward neural networks (FFNN). 
-We remove 10/% of our training dataset as a hold-out set for comparing whether our model performs well on the non-interpolating regime from the initial test-set and from the interpolating regime. 
+We remove 20/% of our training dataset as a hold-out set for comparing whether our model performs well on the non-interpolating regime from the initial test-set and from the interpolating regime. 
 
 
 #### Random Forest
-  We utilize a random forest from scikit-learn package.  All 316 features were utilized, and only a single hyper-parameter was utilized: the number of estimators. The value for the number of estimators was found to be 100.  The accuracies was found to be 0.79\% on the validation set and 64\% on the test set. The confusion plot of the validation is shown below, illustrating relatively the same level of false negatives and positives.
-  
-  <img src="https://github.com/user-attachments/assets/8763e686-5548-405d-a946-fbeb39d2915a" width=85% height=50%>
+  We utilize a random forest from scikit-learn package.  All 316 features were utilized, and only a single hyper-parameter was utilized: the number of estimators. The value for the number of estimators was found to be 100.  The accuracies was found to be 0.80\% on the validation set and 62\% on the test set. The confusion plot of the validation is shown below, illustrating relatively the same level of false negatives and positives.
+
+  <img src="https://github.com/user-attachments/assets/a39c484d-42b9-4baf-b149-527e6fd1a4f9" width=85% height=50%>
 
 Whereas, the confusion plot of the test set is shown below,, illustrating much more false negatives than false positives.
 
-  <img src="https://github.com/user-attachments/assets/dd3badaa-cbe2-49c5-b501-b3cbc64b6038" width=56% height=66%>
+  <img src="https://github.com/user-attachments/assets/6ea9871b-4605-4812-aa20-fdfc35ad89b4" width=56% height=66%>
 
 The Random Forest model identified these as the ten most influential features:
 
@@ -84,12 +84,12 @@ The Random Forest model identified these as the ten most influential features:
 
 #### FFNN
 
-  We utilize a feedforward neural network from the scikit-learn package. All 316 features were utilized, and the hyper-parameters optimized were: number of hidden layers, activation function, optimization algorithm and choice of learning rate.  The accuracies was found to be 0.78 \% on the validation set and 62\% on the test set. Making it very similar to the random forest model. The following confusion matrices are shown of the validation and test set, respectively.   The FFNN has more balanced number of false negatives, and false positive for the 'news' domain. However, it has similar ratios for 'reviews' domain, compared to random forest.
+  We utilize a feedforward neural network from the scikit-learn package. All 316 features were utilized, and the hyper-parameters optimized were: number of hidden layers, activation function, optimization algorithm and choice of learning rate.  The accuracies was found to be 0.79 \% on the validation set and 59\% on the test set. Making it very similar to the random forest model. The following confusion matrices are shown of the validation and test set, respectively.   The FFNN has more balanced number of false negatives, and false positive for the 'news' domain. However, it has similar ratios for 'reviews' domain, compared to random forest.
   Since our business objective is based on fraud and spam detection, these indicate that the FFNN is more suited since it has less false negatives.
-  
-  <img src="https://github.com/user-attachments/assets/536bfbab-6526-4490-9e4f-b81e94f7b49a" width=85% height=50%>
 
-  <img src="https://github.com/user-attachments/assets/ff691adb-1edf-4ac4-9643-db33ed6b06f1" width=56% height=66%>
+  <img src="https://github.com/user-attachments/assets/7bd025a7-fa14-49af-941f-608037df18a1" width=85% height=50%>
+
+  <img src="https://github.com/user-attachments/assets/2076398a-c7b3-425b-8eeb-6ac15e95be24" width=56% height=66%>
 
 
 #### Light-GBM 
